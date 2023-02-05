@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" th:href="@{/style.css}">
+
+    <title>Hello, world!</title>
+</head>
+<body style="padding-left: 30px; padding-right: 30px;">
+<h1>Edit match</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Match id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Date</th>
+        <th scope="col">Rovoticket id</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <form th:action="@{/match/saveChange}" method="post" style="height: auto;">
+        <tr th:each="match:${match}">
+
+            <td>
+                <input type="text"  class="form-control" name="id" th:value="${match.getId()}" style="max-width: 20%;"  readonly>
+            </td>
+
+            <td>
+                <input type="text" class="form-control" name="name" id="name" th:value="${match.getName()}" style="width: fit-content;">
+            </td>
+
+            <td>
+                <input type="text" class="form-control" name="matchType" id="matchType" th:value="${match.getMatchType()}" style="width: fit-content;">
+            </td>
+
+            <td>
+                <input type="date" class="form-control" name="date" id="date" th:value="${match.getDate()}" style="width: fit-content;">
+            </td>
+
+            <td>
+                <input type="number" class="form-control" name="roboticketId" id="roboticketId" th:value="${match.getRoboticketId()}" style="width: fit-content;">
+            </td>
+
+
+            <td>
+
+                <a th:href="@{/match/delete(id=${match.getId()})}" class="btn btn-danger">DELETE</a>
+            </td>
+
+            <td>
+                <a>
+                    <button type="submit" class="btn btn-primary">SAVE</button>
+                </a>
+            </td>
+        </tr>
+    </form>
+    </tbody>
+</table>
+
+</body>
+</html>
